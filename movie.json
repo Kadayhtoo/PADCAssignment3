@@ -1,0 +1,26 @@
+[
+    {
+      "title": "Movie1",
+      "poster" : "aut1",
+      "casts":"",
+      "trailer":""
+    },
+    {
+        "title": "Movie2",
+        "poster" : "aut1",
+        "casts":"",
+        "trailer":""
+      },
+      {
+        "title": "Movie3",
+        "poster" : "aut1",
+        "casts":"",
+        "trailer":""
+      },
+      {
+        "title": "Movie4",
+        "poster" : "aut1",
+        "casts":"",
+        "trailer":""
+      }
+  ]

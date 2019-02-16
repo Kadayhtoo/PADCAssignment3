@@ -1,148 +1,90 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>PADC Myanmar - Exercise</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <style>
-    #movie-template {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-    }
-
-    #movie-template li {
-      border-radius: 5px;
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
-      max-width: 150px;
-      margin: 5px;
-    }
-
-    #movie-template li img {
-      max-width: 100%;
-    }
-
-    #movie-template li div {
-      text-align: center;
-    }
-    ul{
-      list-style-type: none;
-    }
-  </style>
-  
+	<title>Movie Trailer</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"/>   
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Movie World</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+	<header>		
+        <nav class="indigo">
+            <div class="nav-wrapper">              
+              <ul class="left hide-on-med-and-down">
+                <li><a href="#">Home</a></li>
+                <li style="display:none;"><a href="#" id="movie-name">Movie Name</a></li>                
+              </ul>
+            </div>
+          </nav>               
+	</header>
+	<div class="container-fluid">
+		<div class="row" id="viewport">
+		</div>		
+	</div>
+    <footer class="page-footer indigo">
+        <div class="footer-copyright">
+          <div class="container">
+           Copyright © 2019 PADC. All rights reserved.
+          </div>
+        </div>
+      </footer>
+	<template id="movie-info-template">       
+            <div class="col s12 m4 l2">
+              <div class="card">
+                <div class="card-image">
+                  <img src="{{this.poster}}">
+                  <span class="card-title">{{this.title}}</span>
+                  <button class="btn-floating halfway-fab waves-effect waves-light red"  id="detail" aria-valuemax="{{this.id}}">
+                      <i class="material-icons">description</i>
+                  </button>
+                </div>
+                <div class="card-content">
+                  <p>{{this.overview}}</p>
+                </div>
               </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-      </nav> 
- 
-  <ul id="movie">
-    <div class="container">
-      <div class="row">
-          <div class="card col12-col-md-3" style="width: 18rem;margin: 25px;">
-              <li ></li>
           </div>
-          <div class="card col12-col-md-3" style="width: 18rem;margin: 25px;">
-              <li ></li>
-          </div>
-          <div class="card col12-col-md-3" style="width: 18rem;margin: 25px;">
-              <li ></li>
-          </div>
-          <div class="card col12-col-md-3" style="width: 18rem;margin: 25px;">
-              <li ></li>
-          </div>
-      </div>
-    </div>
-    <!-- <li class="card col12-col-md-3" style="width: 18rem;margin: 25px;"></li>
-    <li class="card col12-col-md-3" style="width: 18rem;margin: 25px;"></li>
-    <li class="card col12-col-md-3" style="width: 18rem;margin: 25px;"></li> -->
-  </ul>
-  <template id="movie-template">
-      
-        <img src="{{this.poster}}" class="card-img-top" alt="Movies">
-        <div class="card-body">
-            <h5 class="card-title">{{this.title}}</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Detail</a>
-        </div>
-     
   </template>
-      
-  <script>
-      class Movie{
-        constructor(title,poster,casts,trailer){
-        this.title = title;
-        this.poster = poster;
-        this.casts = casts;
-        this.trailer=trailer;
-        this.detailTemplate=document.getElementById("movie-template").innerHTML;
-      }
-      display() {
-       const result=this.detailTemplate
-       .replace("{{this.title}}",this.title)
-       .replace("{{this.poster}}",this.poster)
-       .replace("{{this.casts}}",this.casts)
-       .replace("{{this.trailer}}",this.trailer);
-       return result;
-      }
-      
-      }
-      class Utility{
-      static getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
-  }
-    }
-const array=[];
-const movies=[{"title":"Movie1","poster":"http://www.fallenarisemusic.com/wp-content/uploads/2017/08/Enjoy-online-movies-for-your-mind-relaxation.jpg","casts":"","trailer":""},{"title":"Movie2","poster":"http://www.fallenarisemusic.com/wp-content/uploads/2017/08/Enjoy-online-movies-for-your-mind-relaxation.jpg","casts":"","trailer":""},
-                {"title":"Movie3","poster":"https://amp.businessinsider.com/images/5a6b65cccf841046498b488a-750-422.jpg","casts":"","trailer":""},{"title":"Movie4","poster":"https://amp.businessinsider.com/images/5a6b65cccf841046498b488a-750-422.jpg","casts":"","trailer":""} ];
-  for (var key in movies) {
-        const movie= new Movie(movies[key].title,movies[key].poster,movies[key].casts,movies[key].trailer);
-         array.push(movie)
-      }
-    console.log(array);
-    let i=0;
-    const nodeList=document.querySelectorAll("#movie li");
-    for(let item of nodeList){   
-      item.innerHTML=array[i++].display();
-    } 
-      
-  </script>
-</body>
+  <template id="movie-detail-template">       
+    <div class="col">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{this.poster}}">
+          <span class="card-title">{{this.title}}</span>
+          <a class="btn-floating halfway-fab waves-effect waves-light red" href="#" id="detail" >
+              <i class="material-icons">add</i>
+            </a>            
+        </div>
+        <div class="card-content">
+          <p>{{this.casts}}</p>
+        </div>
+      </div>
+  </div>
+</template>
+  <script src="js/app.js" type="module"></script> 
+  <script type="text/javascript">
+    // $('#detail').click(function(){ 
+    //     alert('json');
+    //      $.getJSON("https://api.themoviedb.org/3/movie/157336/videos?api_key=39a81e69f5a6260b8083e7cace35f28a",
+    //      function(data) {
+    //         alert(data);         
+    //       });   
+    // });
 
+    $('#detail').click(function(){ 
+        alert('ajax');
+         $.ajax({ 
+             type: "GET",
+             dataType: "json",
+             url: "https://api.themoviedb.org/3/movie/157336/videos?api_key=39a81e69f5a6260b8083e7cace35f28a",
+             success: function(data){        
+                alert(data);
+             }
+         });
+    });
+
+</script> 
+</body>
 </html>
